@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
+import 'package:push_notifications_test/provider/notification_provider.dart';
 
 class NotificationHome extends StatefulWidget {
   const NotificationHome({super.key});
@@ -52,9 +54,20 @@ class _NotificationHomeState extends State<NotificationHome> {
     return Scaffold(
       appBar: AppBar(title: const Text('Push Notifications')),
       body: Center(
-        child: ElevatedButton(
-          onPressed: showNotification,
-          child: const Text('Show Local Notification'),
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: showNotification,
+              child: const Text('Show Local Notification'),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: context
+                  .read<NotificationProvider>()
+                  .getFirebaseNotification,
+              child: Text('firebase notification'),
+            ),
+          ],
         ),
       ),
     );

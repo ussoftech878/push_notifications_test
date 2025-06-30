@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:push_notifications_test/provider/notification_provider.dart';
 import 'package:push_notifications_test/services/firebase_messaging_service.dart';
 import 'notification_home.dart';
 
@@ -21,21 +22,6 @@ void main() async {
       child: const MainApp(),
     ),
   );
-}
-
-class NotificationProvider extends ChangeNotifier {
-  String? _notification;
-  String? get notification => _notification;
-
-  void showNotification(String message) {
-    _notification = message;
-    notifyListeners();
-  }
-
-  void clearNotification() {
-    _notification = null;
-    notifyListeners();
-  }
 }
 
 class MainApp extends StatelessWidget {
